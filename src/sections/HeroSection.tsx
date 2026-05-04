@@ -97,6 +97,7 @@ export default function HeroSection() {
 
   return (
     <section
+      id="home"
       ref={sectionRef}
       className="pinned-section z-10"
     >

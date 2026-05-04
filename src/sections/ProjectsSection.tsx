@@ -180,7 +180,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section ref={sectionRef} className="pinned-section z-20 bg-doma-bg">
+    <section id="projects" ref={sectionRef} className="pinned-section z-20 bg-doma-bg">
       <div
         ref={labelRef}
         className="absolute left-[3vw] top-[8vh] label-upper will-change-transform z-30"
