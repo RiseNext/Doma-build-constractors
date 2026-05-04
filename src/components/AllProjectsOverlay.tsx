@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { ProjectDetailData } from './ProjectDetail';
 
 type Props = {
@@ -43,9 +44,9 @@ export default function AllProjectsOverlay({ projects, onClose, onSelect }: Prop
   const shown = projects.slice(0, visibleCount);
   const hasMore = visibleCount < projects.length;
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[200] overflow-hidden"
+      className="fixed inset-0 z-[300] overflow-hidden"
       style={{
         backgroundColor: '#0E0E0E',
         opacity: visible ? 1 : 0,
@@ -155,6 +156,7 @@ export default function AllProjectsOverlay({ projects, onClose, onSelect }: Prop
           100% { opacity: 1; transform: translateY(0); }
         }
       `}</style>
-    </div>
+    </div>,
+    document.body
   );
 }

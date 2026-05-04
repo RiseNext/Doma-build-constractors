@@ -1,4 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+
+export type ProjectCategory = 'commercial' | 'residential' | 'community';
+export type ProjectStatus = 'present' | 'past';
 
 export type ProjectDetailData = {
   title: string;
@@ -9,36 +13,53 @@ export type ProjectDetailData = {
   description: string;
   longDescription: string;
   gallery: string[];
+  category: ProjectCategory;
+  status: ProjectStatus;
 };
 
 type Props = {
   project: ProjectDetailData;
-  source?: 'selected' | 'all';
+  sourceLabel?: string;
+  onBackToProjects?: () => void;
   onClose: () => void;
 };
 
 const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
 
-const SOURCE_LABEL: Record<NonNullable<Props['source']>, string> = {
-  selected: 'Selected Projects',
-  all: 'All Projects',
-};
-
-export default function ProjectDetail({ project, source = 'selected', onClose }: Props) {
+export default function ProjectDetail({
+  project,
+  sourceLabel = 'Selected Projects',
+  onBackToProjects,
+  onClose,
+}: Props) {
   const [entered, setEntered] = useState(false);
   const [closing, setClosing] = useState(false);
+  const [galleryIdx, setGalleryIdx] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const overviewRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
+  const galleryTotal = project.gallery.length;
+  const goNextFrame = () =>
+    setGalleryIdx((i) => (i + 1) % galleryTotal);
+  const goPrevFrame = () =>
+    setGalleryIdx((i) => (i - 1 + galleryTotal) % galleryTotal);
+
+  useEffect(() => {
+    setGalleryIdx(0);
+  }, [project.title]);
+
   useEffect(() => {
     const t = window.requestAnimationFrame(() => setEntered(true));
-    const prevOverflow = document.body.style.overflow;
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     return () => {
       window.cancelAnimationFrame(t);
-      document.body.style.overflow = prevOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
     };
   }, []);
 
@@ -68,6 +89,33 @@ export default function ProjectDetail({ project, source = 'selected', onClose }:
     }, 720);
   };
 
+  const goToHome = () => {
+    if (closing) return;
+    setClosing(true);
+    window.setTimeout(() => {
+      onClose();
+      window.requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }, 720);
+  };
+
+  const goToProjects = () => {
+    if (closing) return;
+    if (onBackToProjects) {
+      onBackToProjects();
+      return;
+    }
+    setClosing(true);
+    window.setTimeout(() => {
+      onClose();
+      window.requestAnimationFrame(() => {
+        const el = document.getElementById('projects');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }, 720);
+  };
+
   const scrollTo = (target: React.RefObject<HTMLDivElement | null>) => {
     const container = scrollRef.current;
     const el = target.current;
@@ -76,13 +124,11 @@ export default function ProjectDetail({ project, source = 'selected', onClose }:
     container.scrollTo({ top, behavior: 'smooth' });
   };
 
-  const sourceLabel = SOURCE_LABEL[source];
-
   const visible = entered && !closing;
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[200] overflow-hidden"
+      className="fixed inset-0 z-[300] overflow-hidden"
       style={{
         backgroundColor: '#0E0E0E',
         opacity: visible ? 1 : 0,
@@ -115,9 +161,21 @@ export default function ProjectDetail({ project, source = 'selected', onClose }:
               aria-label="Breadcrumb"
               className="text-[10px] md:text-xs uppercase tracking-[0.16em] text-white/55 text-right truncate max-w-[55vw]"
             >
-              <span className="hidden sm:inline">Doma Build</span>
+              <button
+                type="button"
+                onClick={goToHome}
+                className="hidden sm:inline hover:text-white transition-colors duration-300"
+              >
+                Doma Build
+              </button>
               <span className="hidden sm:inline mx-2 text-white/25">/</span>
-              <span className="hidden sm:inline">{sourceLabel}</span>
+              <button
+                type="button"
+                onClick={goToProjects}
+                className="hidden sm:inline hover:text-white transition-colors duration-300"
+              >
+                {sourceLabel}
+              </button>
               <span className="hidden sm:inline mx-2 text-white/25">/</span>
               <span className="text-white/85">{project.title}</span>
             </nav>
@@ -186,30 +244,106 @@ export default function ProjectDetail({ project, source = 'selected', onClose }:
         </div>
 
         <div ref={galleryRef} className="px-[5vw] md:px-[3vw] pb-[10vh] md:pb-[12vh]">
-          <div className="flex items-baseline justify-between gap-3 mb-[4vh] md:mb-[5vh]">
-            <h2 className="font-serif text-white text-[clamp(22px,3vw,44px)]">
-              Inside the build
-            </h2>
-            <span className="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-white/45 text-right">
-              <span className="hidden sm:inline">Gallery · </span>{project.gallery.length} frames
-            </span>
+          <div className="flex items-end justify-between gap-3 mb-[3vh] md:mb-[4vh]">
+            <div>
+              <div className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-white/45 mb-2 md:mb-3">
+                Gallery
+              </div>
+              <h2 className="font-serif text-white text-[clamp(28px,3.6vw,52px)] leading-[1.05]">
+                Inside the build
+              </h2>
+            </div>
+            <div className="text-right shrink-0">
+              <div className="font-serif text-white text-[clamp(28px,3.6vw,52px)] leading-none tabular-nums">
+                {String(galleryIdx + 1).padStart(2, '0')}
+              </div>
+              <div className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-white/45 mt-1">
+                of {String(galleryTotal).padStart(2, '0')}
+              </div>
+            </div>
           </div>
-          <div className="grid grid-cols-12 gap-3 md:gap-4">
-            {project.gallery.map((src, i) => {
-              const span = galleryClass(i);
-              return (
-                <div
-                  key={src + i}
-                  className={`relative overflow-hidden rounded-md ${span}`}
-                >
-                  <img
-                    src={src}
-                    alt={`${project.title} gallery ${i + 1}`}
-                    className="w-full h-full object-cover transition-transform [transition-duration:1100ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04]"
-                  />
+
+          <div className="relative w-full h-[clamp(320px,58vh,640px)] rounded-md overflow-hidden bg-black/60 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+            {project.gallery.map((src, i) => (
+              <img
+                key={src + i}
+                src={src}
+                alt={`${project.title} frame ${i + 1}`}
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{
+                  opacity: i === galleryIdx ? 1 : 0,
+                  transform: i === galleryIdx ? 'scale(1)' : 'scale(1.05)',
+                  transition: `opacity 800ms ${EASE}, transform 1400ms ${EASE}`,
+                }}
+              />
+            ))}
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15 pointer-events-none" />
+
+            <button
+              type="button"
+              onClick={goPrevFrame}
+              aria-label="Previous frame"
+              className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/30 bg-black/30 backdrop-blur-sm text-white text-lg hover:bg-white hover:text-doma-text hover:border-white transition-colors duration-300"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              onClick={goNextFrame}
+              aria-label="Next frame"
+              className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-full border border-white/30 bg-black/30 backdrop-blur-sm text-white text-lg hover:bg-white hover:text-doma-text hover:border-white transition-colors duration-300"
+            >
+              →
+            </button>
+
+            <div className="absolute left-4 md:left-6 bottom-4 md:bottom-6 text-white">
+              <div className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-white/70">
+                Frame {String(galleryIdx + 1).padStart(2, '0')} · {project.location}
+              </div>
+            </div>
+
+            <div className="absolute right-4 md:right-6 bottom-4 md:bottom-6 hidden md:flex items-center gap-1.5">
+              {project.gallery.map((_, i) => (
+                <button
+                  key={`dot-${i}`}
+                  type="button"
+                  onClick={() => setGalleryIdx(i)}
+                  aria-label={`Go to frame ${i + 1}`}
+                  className={`h-px transition-all duration-500 ${
+                    i === galleryIdx
+                      ? 'w-8 bg-white'
+                      : 'w-4 bg-white/35 hover:bg-white/60'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 md:mt-7 flex gap-2 md:gap-3 overflow-x-auto pb-2 thin-scroll">
+            {project.gallery.map((src, i) => (
+              <button
+                key={`thumb-${src}-${i}`}
+                type="button"
+                onClick={() => setGalleryIdx(i)}
+                aria-label={`Show frame ${i + 1}`}
+                className={`relative shrink-0 w-[22vw] sm:w-[14vw] md:w-[9vw] aspect-[4/3] rounded overflow-hidden transition-all duration-500 ${
+                  i === galleryIdx
+                    ? 'opacity-100 ring-1 ring-white/80'
+                    : 'opacity-45 hover:opacity-85'
+                }`}
+              >
+                <img
+                  src={src}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent pointer-events-none" />
+                <div className="absolute left-2 bottom-1.5 text-white/85 text-[10px] uppercase tracking-[0.2em] tabular-nums">
+                  {String(i + 1).padStart(2, '0')}
                 </div>
-              );
-            })}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -245,7 +379,8 @@ export default function ProjectDetail({ project, source = 'selected', onClose }:
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
@@ -262,14 +397,3 @@ function Detail({ label, value }: { label: string; value: string }) {
   );
 }
 
-function galleryClass(i: number): string {
-  const pattern = [
-    'col-span-12 md:col-span-7 aspect-[16/10]',
-    'col-span-12 md:col-span-5 aspect-[4/5]',
-    'col-span-12 md:col-span-4 aspect-[4/5]',
-    'col-span-12 md:col-span-8 aspect-[16/9]',
-    'col-span-12 md:col-span-6 aspect-[5/4]',
-    'col-span-12 md:col-span-6 aspect-[5/4]',
-  ];
-  return pattern[i % pattern.length];
-}
