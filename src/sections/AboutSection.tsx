@@ -33,7 +33,7 @@ const areas: AboutArea[] = [
       'Eighteen years of careful, considered construction across residential, commercial, and community work.',
     body:
       'With over 18 years of experience in the construction industry, Doma Build Contractors Ltd has become a trusted name in the field of construction. Our team of experts has the knowledge, skills, and expertise to handle any project, big or small. We have completed numerous projects ranging from residential homes to commercial buildings, and our clients can attest to our commitment to quality and excellence.',
-    image: '/services_building.jpg',
+    image: '/about/expertise.png',
     highlights: [
       { label: 'Experience', value: '18+ yrs' },
       { label: 'Delivered', value: '120+ projects' },
@@ -48,7 +48,7 @@ const areas: AboutArea[] = [
       'Skilled hands, considered minds — a small senior team that owns each build end to end.',
     body:
       'Our team is made up of experienced and skilled individuals who are passionate about what they do. From our project managers to our skilled tradespeople, we work together to ensure that every project is completed to the highest standard. We believe in building lasting relationships with our clients, and it shows in the way we approach every project.',
-    image: '/about_site_work.jpg',
+    image: '/about/our-team.png',
     highlights: [
       { label: 'Senior leads', value: '5' },
       { label: 'Trades on roster', value: '40+' },
@@ -119,7 +119,7 @@ const areas: AboutArea[] = [
       'A complete vocabulary of build — design-build, contracting, management — sized to the brief.',
     body:
       'At Doma Build Contractors Ltd, we offer a wide range of services to meet the diverse needs of our clients. Our services include design-build, general contracting, construction management, and more. We work closely with our clients to understand their unique needs and deliver solutions that exceed their expectations. We are committed to delivering projects that are on time, within budget, and of the highest quality.',
-    image: '/archive_03.jpg',
+    image: '/about/our-services.png',
     highlights: [
       { label: 'Engagements', value: '4 models' },
       { label: 'On-budget', value: '96%' },

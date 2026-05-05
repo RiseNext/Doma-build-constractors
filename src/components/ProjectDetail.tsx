@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Footer from './Footer';
+import ContactPanel from './ContactPanel';
+import { scrollToSection } from '../lib/scroll';
 
 export type ProjectCategory = 'commercial' | 'residential' | 'community';
 
@@ -92,10 +94,7 @@ export default function ProjectDetail({
     setClosing(true);
     window.setTimeout(() => {
       onClose();
-      window.requestAnimationFrame(() => {
-        const el = document.getElementById('projects');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+      scrollToSection('projects');
     }, 720);
   };
 
@@ -116,25 +115,6 @@ export default function ProjectDetail({
     triggerClose();
   };
 
-  const goToGlobalContact = () => {
-    if (closing) return;
-    setClosing(true);
-    window.dispatchEvent(
-      new CustomEvent('contact:prefill', {
-        detail: {
-          project: project.title,
-          projectCategory: project.category,
-        },
-      })
-    );
-    window.setTimeout(() => {
-      onClose();
-      window.requestAnimationFrame(() => {
-        const el = document.getElementById('contact');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    }, 720);
-  };
 
   const visible = entered && !closing;
 
@@ -247,16 +227,16 @@ export default function ProjectDetail({
             </div>
           </div>
 
-          <div className="relative w-full h-[clamp(320px,58vh,640px)] rounded-md overflow-hidden bg-black/60 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+          <div className="relative w-full h-[clamp(320px,58vh,640px)] rounded-md overflow-hidden bg-black shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
             {project.gallery.map((src, i) => (
               <img
                 key={src + i}
                 src={src}
                 alt={`${project.title} frame ${i + 1}`}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-contain"
                 style={{
                   opacity: i === galleryIdx ? 1 : 0,
-                  transform: i === galleryIdx ? 'scale(1)' : 'scale(1.05)',
+                  transform: i === galleryIdx ? 'scale(1)' : 'scale(1.02)',
                   transition: `opacity 800ms ${EASE}, transform 1400ms ${EASE}`,
                 }}
               />
@@ -333,89 +313,17 @@ export default function ProjectDetail({
 
         <div
           ref={contactRef}
-          className="px-[5vw] md:px-[3vw] py-[8vh] md:py-[10vh] border-t border-white/10 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-8"
+          className="px-[5vw] md:px-[3vw] py-[8vh] md:py-[10vh] border-t border-white/10"
         >
-          <div>
-            <div className="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-white/45 mb-3 md:mb-4">
-              Enquire about this project
-            </div>
-            <h3 className="font-serif text-white text-[clamp(26px,3.4vw,52px)] leading-[1.05] max-w-[20ch] mb-5 md:mb-7">
-              Talk to us about {project.title}.
-            </h3>
-            <p className="text-white/65 text-[14px] md:text-[16px] leading-[1.65] max-w-[48ch] mb-7 md:mb-10">
-              Use the website's contact form — we'll carry the project details
-              across so your message starts where this page leaves off.
-            </p>
-
-            <div className="space-y-2.5 md:space-y-3">
-              <a
-                href="tel:+442087934511"
-                className="block text-[15px] md:text-[18px] text-white hover:text-doma-gold transition-colors duration-300"
-              >
-                +44 (0)20 8793 4511
-              </a>
-              <a
-                href="tel:+447535697887"
-                className="block text-[15px] md:text-[18px] text-white hover:text-doma-gold transition-colors duration-300"
-              >
-                +44 (0)7535 697 887
-              </a>
-              <p className="text-white/45 text-[13px] md:text-[14px] leading-[1.6] pt-2">
-                Doma Build Contractors Ltd
-                <br />
-                133 West Hendon Broadway
-                <br />
-                London, NW9 7DY
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white/5 backdrop-blur-sm rounded-md p-6 md:p-8 flex flex-col justify-between gap-6">
-            <div>
-              <div className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-doma-gold mb-3">
-                We'll carry across
-              </div>
-              <ul className="space-y-2.5 md:space-y-3">
-                <li className="flex items-baseline gap-3 text-white/85">
-                  <span className="text-[10px] uppercase tracking-[0.22em] text-white/45 w-20 shrink-0">
-                    Project
-                  </span>
-                  <span className="text-[15px] md:text-[16px] font-serif">
-                    {project.title}
-                  </span>
-                </li>
-                {categoryLabel && (
-                  <li className="flex items-baseline gap-3 text-white/85">
-                    <span className="text-[10px] uppercase tracking-[0.22em] text-white/45 w-20 shrink-0">
-                      Category
-                    </span>
-                    <span className="text-[15px] md:text-[16px]">
-                      {categoryLabel}
-                    </span>
-                  </li>
-                )}
-                <li className="flex items-baseline gap-3 text-white/85">
-                  <span className="text-[10px] uppercase tracking-[0.22em] text-white/45 w-20 shrink-0">
-                    Location
-                  </span>
-                  <span className="text-[15px] md:text-[16px]">
-                    {project.location}
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            <button
-              type="button"
-              onClick={goToGlobalContact}
-              className="group inline-flex items-center justify-center gap-3 px-6 md:px-7 py-3 md:py-3.5 border border-doma-gold text-doma-gold text-xs md:text-sm uppercase tracking-[0.18em] rounded-full hover:bg-doma-gold hover:text-doma-dark transition-colors duration-300 self-start"
-            >
-              <span>Open contact form</span>
-              <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </button>
-          </div>
+          <ContactPanel
+            label="Enquire about this project"
+            heading={`Talk to us about ${project.title}.`}
+            description="Send us your details and we'll come back to you about this build directly. Your message is carried straight to WhatsApp."
+            initialPrefill={{
+              project: project.title,
+              projectCategory: project.category,
+            }}
+          />
         </div>
 
         <div className="px-[5vw] md:px-[3vw] pb-[6vh] md:pb-[8vh] flex justify-start">

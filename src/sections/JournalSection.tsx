@@ -75,7 +75,7 @@ export default function JournalSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative z-60 bg-doma-bg py-[10vh] md:py-[14vh]"
+      className="relative z-[60] bg-doma-bg py-[10vh] md:py-[14vh]"
     >
       <div className="px-[5vw] md:px-[3vw]">
         {/* Heading */}

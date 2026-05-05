@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { scrollToSection, scrollToTop } from '../lib/scroll';
 
 type CategoryKey = 'commercial' | 'residential' | 'community';
 
@@ -37,28 +38,24 @@ export default function Navigation() {
 
   const goTo = (href: string) => {
     setMenuOpen(false);
-    window.setTimeout(() => {
-      const id = href.replace('#', '');
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      else if (href === '#home')
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 320);
+    const id = href.replace('#', '');
+    if (href === '#home') {
+      scrollToTop({ delay: 320 });
+    } else {
+      scrollToSection(id, { delay: 320 });
+    }
   };
 
   const openCategory = (category: CategoryKey) => {
     setMenuOpen(false);
+    scrollToSection('projects', { delay: 320 });
     window.setTimeout(() => {
-      const el = document.getElementById('projects');
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.setTimeout(() => {
-        window.dispatchEvent(
-          new CustomEvent('projects:openCategory', {
-            detail: { category },
-          })
-        );
-      }, 380);
-    }, 320);
+      window.dispatchEvent(
+        new CustomEvent('projects:openCategory', {
+          detail: { category },
+        })
+      );
+    }, 700);
   };
 
   return (
@@ -77,14 +74,20 @@ export default function Navigation() {
               e.preventDefault();
               window.location.href = '/';
             }}
-            className={`text-lg font-serif tracking-tight transition-all duration-500 ${
+            className={`inline-flex items-center transition-all duration-500 ${
               isScrolled
-                ? 'text-doma-text opacity-100 translate-y-0 pointer-events-auto'
-                : 'text-white opacity-0 -translate-y-2 pointer-events-none'
+                ? 'opacity-100 translate-y-0 pointer-events-auto'
+                : 'opacity-0 -translate-y-2 pointer-events-none'
             }`}
+            aria-label="Doma Build Contractors Ltd — home"
             aria-hidden={!isScrolled}
           >
-            Doma Build
+            <img
+              src="/logo/width_480.png"
+              alt="Doma Build Contractors Ltd"
+              className="h-8 md:h-9 w-auto select-none"
+              draggable={false}
+            />
           </a>
 
           <button
@@ -109,9 +112,12 @@ export default function Navigation() {
           style={{ overscrollBehavior: 'contain' }}
         >
           <div className="flex items-center justify-between mb-8 md:mb-16">
-            <span className="text-lg font-serif text-white tracking-tight">
-              Doma Build
-            </span>
+            <img
+              src="/logo/width_480.png"
+              alt="Doma Build Contractors Ltd"
+              className="h-8 md:h-9 w-auto select-none"
+              draggable={false}
+            />
             <button
               onClick={() => setMenuOpen(false)}
               className="text-sm font-medium uppercase tracking-wider text-white/60 hover:text-white transition-colors"

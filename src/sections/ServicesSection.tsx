@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scrollToSection } from '../lib/scroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -185,15 +186,12 @@ export default function ServicesSection() {
 
   const goToContactWithService = (svc: Service) => {
     closeModal();
-    window.setTimeout(() => {
-      window.dispatchEvent(
-        new CustomEvent('contact:prefill', {
-          detail: { service: svc.title },
-        })
-      );
-      const el = document.getElementById('contact');
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 200);
+    window.dispatchEvent(
+      new CustomEvent('contact:prefill', {
+        detail: { service: svc.title },
+      })
+    );
+    scrollToSection('contact', { delay: 200 });
   };
 
   return (
@@ -282,11 +280,7 @@ export default function ServicesSection() {
           </div>
           <button
             type="button"
-            onClick={() => {
-              const el = document.getElementById('contact');
-              if (el)
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
+            onClick={() => scrollToSection('contact')}
             className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-full border border-doma-text text-doma-text text-xs md:text-sm uppercase tracking-[0.18em] font-semibold hover:bg-doma-text hover:text-doma-bg transition-colors duration-500 self-start md:self-auto shrink-0"
           >
             <span>Start a conversation</span>

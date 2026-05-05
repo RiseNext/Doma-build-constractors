@@ -9,6 +9,7 @@ import type {
 } from '../components/ProjectDetail';
 import { projects, CATEGORY_ENTRIES } from '../lib/projectsData';
 import type { CategoryEntry } from '../lib/projectsData';
+import { scrollToSection } from '../lib/scroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,10 +54,7 @@ export default function ProjectsSection() {
   const goBackToSelected = () => {
     setOpenProject(null);
     setOpenCategory(null);
-    window.setTimeout(() => {
-      const el = document.getElementById('projects');
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 320);
+    scrollToSection('projects', { delay: 320 });
   };
 
   useEffect(() => {
@@ -179,15 +177,18 @@ export default function ProjectsSection() {
                 alt={c.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-active:scale-[1.03]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute left-5 right-5 bottom-5 text-white">
-                <div className="text-[10px] uppercase tracking-[0.22em] text-white/70 mb-1.5">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
+              <div
+                className="absolute left-5 right-5 bottom-5 text-white"
+                style={{ textShadow: '0 2px 18px rgba(0,0,0,0.55)' }}
+              >
+                <div className="text-[12px] sm:text-[13px] uppercase tracking-[0.22em] text-white/90 mb-2 font-medium">
                   {c.blurb}
                 </div>
-                <h3 className="font-serif text-2xl sm:text-3xl leading-tight">
+                <h3 className="font-serif text-3xl sm:text-4xl leading-tight">
                   {c.title}
                 </h3>
-                <span className="mt-3 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-white/85">
+                <span className="mt-3 inline-flex items-center gap-2 text-[12px] sm:text-[13px] uppercase tracking-[0.16em] text-white">
                   Explore <span>→</span>
                 </span>
               </div>
@@ -343,17 +344,18 @@ function CategoryCard({
           alt={entry.title}
           className="w-full h-full object-cover transition-transform [transition-duration:800ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 pointer-events-none" />
         <div
-          className={`absolute ${large ? 'left-[2.2vw] bottom-[2.6vh]' : 'left-[1.6vw] bottom-[2.2vh]'} text-white`}
+          className={`absolute ${large ? 'left-[2.2vw] right-[2.2vw] bottom-[2.6vh]' : 'left-[1.6vw] right-[1.6vw] bottom-[2.2vh]'} text-white`}
+          style={{ textShadow: '0 2px 18px rgba(0,0,0,0.55)' }}
         >
           <div
-            className={`uppercase tracking-[0.22em] text-white/70 mb-1.5 ${large ? 'text-[11px]' : 'text-[10px]'}`}
+            className={`uppercase tracking-[0.22em] text-white/90 mb-2 font-medium ${large ? 'text-[13px] md:text-[14px]' : 'text-[11px] md:text-[12px]'}`}
           >
             {entry.blurb}
           </div>
           <h3
-            className={`card-title font-serif transition-transform [transition-duration:700ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 ${large ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'}`}
+            className={`card-title font-serif transition-transform [transition-duration:700ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 ${large ? 'text-4xl md:text-5xl lg:text-6xl' : 'text-2xl md:text-3xl lg:text-4xl'}`}
           >
             {entry.title}
           </h3>
