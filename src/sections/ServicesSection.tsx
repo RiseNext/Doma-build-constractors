@@ -202,8 +202,12 @@ export default function ServicesSection() {
     >
       <div className="px-[5vw] md:px-[3vw]">
         <div ref={headingRef} className="mb-8 md:mb-12 will-change-transform">
-          <div className="label-upper mb-3 md:mb-4">SERVICES</div>
-          <h2 className="section-heading text-doma-text">What we deliver</h2>
+          <div className="label-upper mb-3 md:mb-4 text-[14px] md:text-[18px] tracking-[0.28em] font-bold">
+            SERVICES
+          </div>
+          <h2 className="font-serif font-light text-doma-text leading-[1.05] text-[clamp(28px,4vw,56px)]">
+            What we deliver
+          </h2>
           <p className="mt-4 md:mt-5 text-doma-text/70 text-[14px] md:text-[16px] leading-[1.65] max-w-[58ch]">
             Four engagements we lead with — open any to see the related scope,
             or expand for the complete list.
@@ -269,26 +273,6 @@ export default function ServicesSection() {
           </button>
         </div>
 
-        <div className="mt-[10vh] md:mt-[14vh] border-t border-doma-text/10 pt-[6vh] md:pt-[8vh] flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8">
-          <div>
-            <div className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-doma-muted mb-3 md:mb-4">
-              Next step
-            </div>
-            <h3 className="font-serif text-doma-text text-[clamp(24px,3.6vw,56px)] leading-[1.05] max-w-[26ch]">
-              Want to understand how we'd hold your build together?
-            </h3>
-          </div>
-          <button
-            type="button"
-            onClick={() => scrollToSection('contact')}
-            className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-full border border-doma-text text-doma-text text-xs md:text-sm uppercase tracking-[0.18em] font-semibold hover:bg-doma-text hover:text-doma-bg transition-colors duration-500 self-start md:self-auto shrink-0"
-          >
-            <span>Start a conversation</span>
-            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </button>
-        </div>
       </div>
 
       {activeService &&

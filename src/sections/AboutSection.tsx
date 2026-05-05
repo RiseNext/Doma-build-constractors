@@ -26,33 +26,17 @@ type AboutArea = {
 
 const areas: AboutArea[] = [
   {
-    id: 'expertise',
-    num: '01',
-    title: 'Our Expertise',
-    intro:
-      'Eighteen years of careful, considered construction across residential, commercial, and community work.',
-    body:
-      'With over 18 years of experience in the construction industry, Doma Build Contractors Ltd has become a trusted name in the field of construction. Our team of experts has the knowledge, skills, and expertise to handle any project, big or small. We have completed numerous projects ranging from residential homes to commercial buildings, and our clients can attest to our commitment to quality and excellence.',
-    image: '/about/expertise.png',
-    highlights: [
-      { label: 'Experience', value: '18+ yrs' },
-      { label: 'Delivered', value: '120+ projects' },
-      { label: 'Accredited', value: 'FMB' },
-    ],
-  },
-  {
     id: 'team',
-    num: '02',
+    num: '01',
     title: 'Our Team',
     intro:
       'Skilled hands, considered minds — a small senior team that owns each build end to end.',
     body:
       'Our team is made up of experienced and skilled individuals who are passionate about what they do. From our project managers to our skilled tradespeople, we work together to ensure that every project is completed to the highest standard. We believe in building lasting relationships with our clients, and it shows in the way we approach every project.',
-    image: '/about/our-team.png',
+    image: '/about/team/IMG_9482.jpeg',
     highlights: [
       { label: 'Senior leads', value: '5' },
       { label: 'Trades on roster', value: '40+' },
-      { label: 'Avg. tenure', value: '9 years' },
     ],
     team: [
       {
@@ -112,6 +96,21 @@ const areas: AboutArea[] = [
     ],
   },
   {
+    id: 'expertise',
+    num: '02',
+    title: 'Our Expertise',
+    intro:
+      'Eighteen years of careful, considered construction across residential, commercial, and community work.',
+    body:
+      'With over 18 years of experience in the construction industry, Doma Build Contractors Ltd has become a trusted name in the field of construction. Our team of experts has the knowledge, skills, and expertise to handle any project, big or small. We have completed numerous projects ranging from residential homes to commercial buildings, and our clients can attest to our commitment to quality and excellence.',
+    image: '/about/expertise.png',
+    highlights: [
+      { label: 'Experience', value: '18+ yrs' },
+      { label: 'Delivered', value: '120+ projects' },
+      { label: 'Accredited', value: 'FMB' },
+    ],
+  },
+  {
     id: 'services',
     num: '03',
     title: 'Our Services',
@@ -119,11 +118,10 @@ const areas: AboutArea[] = [
       'A complete vocabulary of build — design-build, contracting, management — sized to the brief.',
     body:
       'At Doma Build Contractors Ltd, we offer a wide range of services to meet the diverse needs of our clients. Our services include design-build, general contracting, construction management, and more. We work closely with our clients to understand their unique needs and deliver solutions that exceed their expectations. We are committed to delivering projects that are on time, within budget, and of the highest quality.',
-    image: '/about/our-services.png',
+    image: '/about/services/image.png',
     highlights: [
-      { label: 'Engagements', value: '4 models' },
-      { label: 'On-budget', value: '96%' },
-      { label: 'On-time', value: '94%' },
+      { label: 'On-budget', value: '' },
+      { label: 'On-time', value: '' },
     ],
   },
 ];
@@ -131,8 +129,8 @@ const areas: AboutArea[] = [
 const credentials: { value: string; label: string }[] = [
   { value: '18+', label: 'Years of build experience' },
   { value: '120+', label: 'Projects delivered' },
-  { value: '96%', label: 'On-budget delivery' },
-  { value: '94%', label: 'On-time delivery' },
+  { value: '', label: 'On-budget delivery' },
+  { value: '', label: 'On-time delivery' },
   { value: 'FMB', label: 'Federation accredited' },
 ];
 
@@ -239,7 +237,7 @@ export default function AboutSection() {
       ref={sectionRef}
       className="relative z-30 bg-doma-bg pt-[14vh] pb-[12vh] md:pt-[16vh] md:pb-[14vh] overflow-hidden"
     >
-      <div className="absolute left-[5vw] md:left-[3vw] top-[5vh] md:top-[6vh] label-upper">
+      <div className="absolute left-[5vw] md:left-[3vw] top-[5vh] md:top-[6vh] label-upper text-[14px] md:text-[18px] tracking-[0.28em] font-bold">
         ABOUT
       </div>
 
@@ -248,7 +246,7 @@ export default function AboutSection() {
         className="px-[5vw] md:px-[3vw] grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-end mb-[8vh] md:mb-[10vh] will-change-transform"
       >
         <div className="lg:col-span-7">
-          <h2 className="section-heading text-doma-text leading-[1.02] max-w-[18ch]">
+          <h2 className="font-serif font-light text-doma-text leading-[1.05] max-w-[18ch] text-[clamp(28px,4vw,56px)]">
             A team that builds with clarity.
           </h2>
         </div>
@@ -272,15 +270,23 @@ export default function AboutSection() {
           {credentials.map((c, i) => (
             <div
               key={c.label}
-              className={`cred-stat px-3 sm:px-4 md:px-6 py-6 md:py-9 will-change-transform border-doma-text/10
+              className={`cred-stat px-3 sm:px-4 md:px-6 py-6 md:py-9 will-change-transform border-doma-text/10 flex flex-col ${c.value ? 'items-start justify-start' : 'items-center justify-center text-center'}
                 ${i % 2 === 1 ? 'border-l md:border-l-0' : ''}
                 ${i >= 2 ? 'border-t md:border-t-0' : ''}
                 ${i > 0 ? 'md:border-l' : ''}`}
             >
-              <div className="font-serif text-doma-text text-[clamp(28px,3.6vw,56px)] leading-[1] tabular-nums">
-                {c.value}
-              </div>
-              <div className="mt-2.5 md:mt-4 text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-doma-muted leading-[1.4] max-w-[20ch]">
+              {c.value && (
+                <div className="font-serif text-doma-text text-[clamp(28px,3.6vw,56px)] leading-[1] tabular-nums">
+                  {c.value}
+                </div>
+              )}
+              <div
+                className={
+                  c.value
+                    ? 'mt-2.5 md:mt-4 text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-doma-muted leading-[1.4] max-w-[20ch]'
+                    : 'font-serif text-doma-text text-[clamp(20px,2.4vw,34px)] leading-[1.15] tracking-tight'
+                }
+              >
                 {c.label}
               </div>
             </div>
@@ -347,28 +353,36 @@ function PillarRow({ area, reverse, onSelectMember }: PillarProps) {
       <div
         className={`lg:col-span-5 ${reverse ? 'lg:order-1 lg:col-start-1 lg:pr-[3vw]' : 'lg:pl-[2vw]'}`}
       >
-        <div className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-doma-gold mb-4 md:mb-5">
-          {area.num} — Pillar
+        <div className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-doma-gold mb-4 md:mb-5 tabular-nums">
+          {area.num}
         </div>
         <h3 className="font-serif text-doma-text text-[clamp(28px,4.2vw,68px)] leading-[1.05] mb-5 md:mb-6">
           {area.title}
         </h3>
-        <p className="text-doma-text/85 text-[15px] md:text-[18px] leading-[1.65] max-w-[46ch] mb-5 md:mb-6 font-light">
+        <p className="text-doma-text/85 text-[15px] md:text-[17px] leading-[1.7] max-w-[52ch] mb-5 md:mb-6 font-light">
           {area.intro}
         </p>
-        <p className="text-doma-text/70 text-[14px] md:text-[16px] leading-[1.7] max-w-[52ch] mb-7 md:mb-9 font-light">
+        <p className="text-doma-text/85 text-[15px] md:text-[17px] leading-[1.7] max-w-[52ch] mb-7 md:mb-9 font-light">
           {area.body}
         </p>
 
-        <div className="grid grid-cols-3 gap-4 md:gap-6 border-t border-doma-text/10 pt-5 md:pt-6">
+        <div
+          className={`grid gap-4 md:gap-6 border-t border-doma-text/10 pt-5 md:pt-6 ${
+            area.highlights.length === 2
+              ? 'grid-cols-2'
+              : 'grid-cols-3'
+          }`}
+        >
           {area.highlights.map((h) => (
             <div key={h.label}>
               <div className="text-[9px] md:text-[10px] uppercase tracking-[0.22em] text-doma-muted mb-1.5 md:mb-2 leading-[1.4]">
                 {h.label}
               </div>
-              <div className="font-serif text-doma-text text-[16px] md:text-[22px] leading-[1.15] tabular-nums">
-                {h.value}
-              </div>
+              {h.value && (
+                <div className="font-serif text-doma-text text-[16px] md:text-[22px] leading-[1.15] tabular-nums">
+                  {h.value}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -379,7 +393,7 @@ function PillarRow({ area, reverse, onSelectMember }: PillarProps) {
     {area.team && (
       <div className="mt-10 md:mt-14 border-t border-doma-text/10 pt-7 md:pt-9">
         <div className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-doma-gold mb-5 md:mb-7">
-          Senior team
+          Team
         </div>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 md:gap-4">
           {area.team.map((m, i) => {
@@ -474,7 +488,7 @@ function TeamMemberModal({ member, entered, onClose }: TeamMemberModalProps) {
       >
         <div className="flex items-center justify-between px-6 md:px-9 pt-5 md:pt-6 pb-4">
           <div className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-doma-gold">
-            Senior team
+            Team
           </div>
           <button
             type="button"

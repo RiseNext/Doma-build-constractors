@@ -159,7 +159,7 @@ export default function ProjectsSection() {
         className="relative z-20 bg-doma-bg py-[10vh]"
       >
         <div className="px-[5vw] mb-8">
-          <div className="label-upper mb-3">SELECTED PROJECTS</div>
+          <div className="label-upper mb-3">PROJECTS</div>
           <h2 className="section-heading text-doma-text leading-[1.05]">
             Recent work
           </h2>
@@ -234,7 +234,7 @@ export default function ProjectsSection() {
           className="group absolute left-[3vw] top-[7vh] z-30 inline-flex items-center gap-3 will-change-transform"
         >
           <span className="font-bold uppercase tracking-[0.18em] text-doma-text text-[13px] md:text-[15px] border-b-2 border-doma-text/25 pb-1 group-hover:border-doma-text transition-colors duration-300">
-            Selected Projects
+            Projects
           </span>
           <span className="inline-flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full border border-doma-text/30 text-doma-text text-[12px] transition-all duration-300 group-hover:border-doma-text group-hover:bg-doma-text group-hover:text-doma-bg group-hover:translate-x-1">
             →

@@ -11,6 +11,7 @@ const SERVICE_OPTIONS = [
   'Basement Excavation',
   'Extensions',
   'Heritage & Listed',
+  'Other',
 ];
 
 const WHATSAPP_NUMBER = '447535697887';
@@ -69,6 +70,7 @@ export default function ContactPanel({
     projectCategory: initialCategory as '' | ProjectCategory,
     projectTitle: initialPrefill?.project ?? '',
     service: initialPrefill?.service ?? '',
+    serviceOther: '',
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -155,7 +157,13 @@ export default function ContactPanel({
       );
       lines.push(`Project: ${parts.join(' · ')}`);
     }
-    if (formData.service) lines.push(`Service: ${formData.service}`);
+    if (formData.service) {
+      const serviceLabel =
+        formData.service === 'Other' && formData.serviceOther.trim()
+          ? `Other — ${formData.serviceOther.trim()}`
+          : formData.service;
+      lines.push(`Service: ${serviceLabel}`);
+    }
     if (formData.message) lines.push('', 'Message:', formData.message);
     return lines.join('\n');
   };
@@ -453,13 +461,21 @@ export default function ContactPanel({
                         tabIndex={0}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setFormData((d) => ({ ...d, service: '' }));
+                          setFormData((d) => ({
+                            ...d,
+                            service: '',
+                            serviceOther: '',
+                          }));
                         }}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
                             e.stopPropagation();
-                            setFormData((d) => ({ ...d, service: '' }));
+                            setFormData((d) => ({
+                              ...d,
+                              service: '',
+                              serviceOther: '',
+                            }));
                           }
                         }}
                         className="text-[11px] uppercase tracking-[0.16em] hover:text-white transition-colors cursor-pointer"
@@ -495,7 +511,11 @@ export default function ContactPanel({
                         <button
                           type="button"
                           onClick={() => {
-                            setFormData((d) => ({ ...d, service: opt }));
+                            setFormData((d) => ({
+                              ...d,
+                              service: opt,
+                              serviceOther: opt === 'Other' ? d.serviceOther : '',
+                            }));
                             setOpenPicker(null);
                           }}
                           className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-200 ${
@@ -512,6 +532,23 @@ export default function ContactPanel({
                 </div>
               </div>
             </div>
+
+            {formData.service === 'Other' && (
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-white/60 mb-2">
+                  Tell us your need
+                </label>
+                <input
+                  type="text"
+                  value={formData.serviceOther}
+                  onChange={(e) =>
+                    setFormData({ ...formData, serviceOther: e.target.value })
+                  }
+                  className="w-full bg-transparent border-b border-white/20 py-2 text-white placeholder-white/30 focus:border-doma-gold focus:outline-none transition-colors"
+                  placeholder="Describe the service you need..."
+                />
+              </div>
+            )}
 
             <div>
               <label className="block text-xs uppercase tracking-wider text-white/60 mb-2">

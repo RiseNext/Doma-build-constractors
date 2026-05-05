@@ -180,17 +180,16 @@ export default function ProjectDetail({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30" />
           <div className="absolute left-[5vw] right-[5vw] md:left-[3vw] md:right-[3vw] bottom-[5vh] md:bottom-[6vh] text-white">
-            <div className="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-white/60 mb-2 md:mb-3">
+            <div className="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-white/60 mb-3 md:mb-4">
               {project.year
                 ? `${project.location} · ${project.year}`
                 : project.location}
             </div>
-            <h1 className="font-serif leading-[1.02] text-[clamp(32px,7vw,108px)] max-w-full md:max-w-[78vw]">
+            <h1
+              className="inline-block font-serif leading-[1.02] text-[clamp(32px,7vw,108px)] max-w-full md:max-w-[78vw] px-5 md:px-8 py-3 md:py-4 rounded-[2rem] md:rounded-[3rem] bg-white/10 backdrop-blur-md ring-1 ring-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
+            >
               {project.title}
             </h1>
-            <p className="mt-4 md:mt-6 max-w-full md:max-w-[42vw] text-white/75 text-[14px] md:text-[17px] leading-[1.6]">
-              {project.description}
-            </p>
           </div>
         </div>
 

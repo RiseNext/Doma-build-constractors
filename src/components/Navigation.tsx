@@ -4,9 +4,9 @@ import { scrollToSection, scrollToTop } from '../lib/scroll';
 type CategoryKey = 'commercial' | 'residential' | 'community';
 
 const categories: { label: string; category: CategoryKey }[] = [
-  { label: 'Commercial', category: 'commercial' },
-  { label: 'Residential', category: 'residential' },
   { label: 'Community', category: 'community' },
+  { label: 'Residential', category: 'residential' },
+  { label: 'Commercial', category: 'commercial' },
 ];
 
 export default function Navigation() {
@@ -126,39 +126,33 @@ export default function Navigation() {
             </button>
           </div>
 
-          <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-12 items-start">
-            <ul className="lg:col-span-5 flex flex-col gap-2 md:gap-3">
-              <NavMain index="01" label="Home" onClick={() => goTo('#home')} />
-
-              <NavMain
-                index="02"
-                label="Projects"
-                onClick={() => goTo('#projects')}
-              />
-
-              <NavMain
-                index="03"
-                label="Contact"
-                onClick={() => goTo('#contact')}
-              />
+          <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-20 items-start">
+            <ul className="lg:col-span-7 flex flex-col gap-4 md:gap-5">
+              {categories.map((c) => (
+                <NavMain
+                  key={c.category}
+                  label={c.label}
+                  onClick={() => openCategory(c.category)}
+                />
+              ))}
             </ul>
 
-            <div className="lg:col-span-7 lg:pl-[2vw] lg:border-l lg:border-white/10">
-              <div className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-doma-gold mb-4 md:mb-5">
-                Selected Projects
-              </div>
-
-              {/* Mobile: single tap-to-open category list */}
+            <div className="lg:col-span-5 lg:pl-[2vw] lg:border-l lg:border-white/10">
+              {/* Mobile: tap-to-open page list */}
               <ul className="lg:hidden space-y-2 mb-8 md:mb-10">
-                {categories.map((c) => (
-                  <li key={c.label} className="border-b border-white/10 pb-2">
+                {[
+                  { label: 'Home', href: '#home' },
+                  { label: 'Projects', href: '#projects' },
+                  { label: 'Contact', href: '#contact' },
+                ].map((item) => (
+                  <li key={item.label} className="border-b border-white/10 pb-2">
                     <button
                       type="button"
-                      onClick={() => openCategory(c.category)}
+                      onClick={() => goTo(item.href)}
                       className="w-full flex items-center justify-between gap-3 py-2 text-left group"
                     >
                       <span className="font-serif text-white/90 text-[clamp(22px,5.5vw,32px)] leading-[1.05] group-hover:text-doma-gold transition-colors">
-                        {c.label}
+                        {item.label}
                       </span>
                       <span
                         className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/30 text-white/70 group-hover:border-doma-gold group-hover:text-doma-gold transition-colors duration-300"
@@ -171,18 +165,22 @@ export default function Navigation() {
                 ))}
               </ul>
 
-              {/* Desktop: single category list */}
-              <ul className="hidden lg:block space-y-3 mb-10">
-                {categories.map((c) => (
-                  <li key={c.label}>
+              {/* Desktop: page list */}
+              <ul className="hidden lg:block space-y-5 mb-12">
+                {[
+                  { label: 'Home', href: '#home' },
+                  { label: 'Projects', href: '#projects' },
+                  { label: 'Contact', href: '#contact' },
+                ].map((item) => (
+                  <li key={item.label}>
                     <button
                       type="button"
-                      onClick={() => openCategory(c.category)}
+                      onClick={() => goTo(item.href)}
                       className="group inline-flex items-baseline gap-3 text-left text-white/85 hover:text-doma-gold transition-colors duration-300"
                     >
                       <span className="inline-block w-6 h-px bg-white/30 group-hover:bg-doma-gold group-hover:w-10 transition-all duration-300" />
                       <span className="font-serif text-[clamp(20px,2.2vw,30px)] leading-[1.05]">
-                        {c.label}
+                        {item.label}
                       </span>
                     </button>
                   </li>
@@ -190,10 +188,7 @@ export default function Navigation() {
               </ul>
 
               <div className="pt-6 md:pt-8 border-t border-white/10">
-                <div className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-white/45 mb-3">
-                  Studio
-                </div>
-                <p className="text-white/65 text-[13px] md:text-[14px] leading-[1.65] max-w-[44ch]">
+                <p className="text-white/75 text-[15px] md:text-[18px] leading-[1.65] max-w-[44ch]">
                   Doma Build Contractors Ltd — design-build &amp; general
                   contracting across residential, commercial, and community
                   work.
@@ -221,12 +216,11 @@ export default function Navigation() {
 }
 
 type NavMainProps = {
-  index: string;
   label: string;
   onClick: () => void;
 };
 
-function NavMain({ index, label, onClick }: NavMainProps) {
+function NavMain({ label, onClick }: NavMainProps) {
   return (
     <li>
       <button
@@ -234,8 +228,11 @@ function NavMain({ index, label, onClick }: NavMainProps) {
         onClick={onClick}
         className="group flex items-baseline gap-4 md:gap-7 text-left w-full"
       >
-        <span className="text-[10px] md:text-[11px] uppercase tracking-[0.22em] text-white/35 pt-2 md:pt-3 group-hover:text-doma-gold transition-colors duration-300 flex-shrink-0">
-          {index}
+        <span
+          aria-hidden
+          className="text-white/35 text-[20px] md:text-[26px] pt-2 md:pt-3 group-hover:text-doma-gold group-hover:translate-x-1 transition-[color,transform] duration-300 flex-shrink-0"
+        >
+          →
         </span>
         <span className="font-serif text-white/85 text-[clamp(34px,8vw,108px)] leading-[1.02] group-hover:text-doma-gold transition-colors duration-300">
           {label}

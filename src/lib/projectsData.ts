@@ -24,7 +24,7 @@ export const CATEGORY_ENTRIES: CategoryEntry[] = [
     id: 'residential',
     title: 'Residential',
     image: '/projects/residential/richmond-house/01.jpeg',
-    blurb: 'Houses, apartments, homes.',
+    blurb: 'Houses, apartments, HMO.',
   },
   {
     id: 'commercial',
@@ -34,10 +34,6 @@ export const CATEGORY_ENTRIES: CategoryEntry[] = [
   },
 ];
 
-const PLACEHOLDER_DESCRIPTION = 'Full project details coming soon.';
-const PLACEHOLDER_LONG_DESCRIPTION =
-  'Full project description and photography to follow.';
-
 export const projects: ProjectDetailData[] = [
   // ─── RESIDENTIAL ──────────────────────────────────────────────────────
   {
@@ -46,8 +42,10 @@ export const projects: ProjectDetailData[] = [
     location: 'Reading, Berkshire',
     year: '',
     scope: 'Residential',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    description:
+      'Full conversion of an existing office building into modern residential apartments, delivered within a tight five-month programme.',
+    longDescription:
+      'A full conversion of an existing office building into modern residential apartments, delivered within a tight five-month programme. The project involved complete strip-out to shell condition, installation of new electric-based utilities, drainage systems, and full internal reconfiguration. High-performance acoustic insulation, fire compartmentation, and compliant stair upgrades were implemented throughout. The development was completed with high-quality finishes including kitchens, bathrooms, flooring, and full MEP systems, transforming the building into a fully compliant residential scheme.',
     gallery: buildGallery('residential/57-castle-street-reading', [
       '01.webp',
       '02.png',
@@ -57,22 +55,26 @@ export const projects: ProjectDetailData[] = [
   {
     title: 'Balham',
     image: '/projects/residential/balham/01.png',
-    location: 'Balham, London',
+    location: '15 Balham High Road, London',
     year: '',
-    scope: 'Residential',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Mixed-use Residential',
+    description:
+      'Mixed-use redevelopment with residential units and a high-end commercial space — full demolition, basement excavation, mansard and rear extension.',
+    longDescription:
+      'A comprehensive mixed-use redevelopment combining residential and commercial elements. The project included full demolition, basement excavation, mansard extension, and rear expansion. It delivered multiple residential units alongside a high-end commercial space, featuring bespoke interior design. Structural steelworks, full MEP installations, fire safety systems, and acoustic treatments were integrated to create a modern, high-quality development.',
     gallery: buildGallery('residential/balham', ['01.png', '02.png']),
     category: 'residential',
   },
   {
     title: 'Finchley House',
     image: '/projects/residential/finchley-house/01.png',
-    location: 'Finchley, London',
+    location: '35 Abington Road, Finchley, London',
     year: '',
-    scope: 'Residential',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Residential — Design & Build',
+    description:
+      'A bespoke five-bedroom luxury residence (~450m²), delivered turnkey with fully coordinated MEP systems and premium finishes.',
+    longDescription:
+      'A bespoke five-bedroom luxury residence spanning approximately 450m², delivered as a full design-and-build project. The scheme included complete structural construction, utility integration, and high-spec internal layouts with multiple living spaces. Fully coordinated MEP systems and premium finishes ensured a turnkey delivery tailored for modern residential living.',
     gallery: buildGallery('residential/finchley-house', [
       '01.png',
       '02.webp',
@@ -84,22 +86,26 @@ export const projects: ProjectDetailData[] = [
   {
     title: 'Finsbury Park',
     image: '/projects/residential/finsbury-park/01.jpg',
-    location: 'Finsbury Park, London',
+    location: '64–66 Finsbury Grove, London',
     year: '',
-    scope: 'Residential',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Residential — New Build',
+    description:
+      'A new-build residential development delivering 10 contemporary apartments across approximately 1,100m² with retained façade and full turnkey fit-out.',
+    longDescription:
+      'A new-build residential development delivering 10 contemporary apartments across approximately 1,100m². The scheme retained the existing façade while constructing a new structural frame, foundations, and extensions to maximise space. Works included zinc cladding, modern roofing systems, high-performance glazing, and full internal fit-out. The project also incorporated drainage systems, utilities, and landscaping, resulting in a complete turnkey residential development.',
     gallery: buildGallery('residential/finsbury-park', ['01.jpg', '02.jpg']),
     category: 'residential',
   },
   {
     title: 'Hitchen',
     image: '/projects/residential/hitchen/01.jpg',
-    location: 'Hitchin, Hertfordshire',
+    location: 'Backlesbury, Hitchin Town Centre',
     year: '',
-    scope: 'Residential',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Heritage Mixed-Use',
+    description:
+      'Heritage-led redevelopment completing a partially abandoned site — 10 residential units, commercial spaces, and a reconstructed 450-year-old roof.',
+    longDescription:
+      'A complex heritage-led redevelopment involving restoration, structural repair, and completion of a partially abandoned site. The project included reconstruction of a 450-year-old roof, restoration of historic elements, and completion of 10 residential units alongside commercial spaces. Extensive coordination, defect resolution, and full MEP completion were carried out to deliver a fully operational mixed-use development.',
     gallery: buildGallery('residential/hitchen', [
       '01.jpg',
       '02.jpeg',
@@ -114,11 +120,13 @@ export const projects: ProjectDetailData[] = [
   {
     title: 'Richmond House',
     image: '/projects/residential/richmond-house/01.jpeg',
-    location: 'Richmond, London',
+    location: 'Courtlands Avenue, Ealing',
     year: '',
-    scope: 'Residential',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Residential — Façade Retention',
+    description:
+      'Façade retention with complete reconstruction of a modern five-bedroom home, including additional floors, crown roof, landscaping and garage.',
+    longDescription:
+      'A large-scale residential redevelopment involving façade retention and complete reconstruction of a modern five-bedroom home. The project included new structural systems, additional floors, crown roof installation, and full internal fit-out. External works featured landscaping, boundary treatments, and garage construction, delivering a high-spec family residence.',
     gallery: buildGallery('residential/richmond-house', [
       '01.jpeg',
       '02.jpeg',
@@ -145,11 +153,13 @@ export const projects: ProjectDetailData[] = [
   {
     title: 'Wembley',
     image: '/projects/residential/wembley/01.png',
-    location: 'Wembley, London',
+    location: '12 Harrowdene Road, Wembley, London',
     year: '',
-    scope: 'Residential',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Residential — Penthouse Extension',
+    description:
+      'High-end rooftop penthouse extension on an occupied residential building — a luxury two-bedroom unit with bespoke kitchens, underfloor heating and designer wet rooms.',
+    longDescription:
+      'A high-end rooftop penthouse extension constructed on an occupied residential building. The project required careful structural sequencing, installation of steel frameworks, and temporary protective systems. Delivered as a luxury two-bedroom unit, the penthouse features premium finishes including bespoke kitchens, underfloor heating, designer wet rooms, and contemporary façade integration.',
     gallery: buildGallery('residential/wembley', [
       '01.png',
       '02.png',
@@ -170,11 +180,13 @@ export const projects: ProjectDetailData[] = [
   {
     title: 'IDC',
     image: '/projects/community/idc/01.jpg',
-    location: 'United Kingdom',
+    location: 'Isleworth Deen Centre, United Kingdom',
     year: '',
-    scope: 'Community',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Community — Grade II Listed',
+    description:
+      'Full refurbishment and structural upgrade of a Grade II listed building, combining modern building performance with heritage preservation.',
+    longDescription:
+      'A full refurbishment and structural upgrade of a Grade II listed building. Works included basement construction, waterproofing systems, full MEP upgrades, and heritage restoration. The project successfully combined modern building performance with preservation requirements, delivering a high-quality community facility.',
     gallery: buildGallery('community/idc', [
       '01.jpg',
       '02.jpg',
@@ -208,11 +220,13 @@ export const projects: ProjectDetailData[] = [
   {
     title: 'Leyton',
     image: '/projects/community/leyton/01.jpg',
-    location: 'Leyton, London',
+    location: 'Nurul Islam Trust, Leyton, London',
     year: '',
-    scope: 'Community',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Community — Refurbishment & Fit-out',
+    description:
+      'Large-scale refurbishment and high-end fit-out of a multi-storey community building, with bespoke ablution facilities and premium internal finishes.',
+    longDescription:
+      'A large-scale refurbishment and high-end fit-out of a multi-storey community building. The project included full MEP installations, structural remediation, fire safety upgrades, and premium internal finishes. Standout features include bespoke ablution facilities with advanced drainage systems, custom solid surfaces, and precision detailing, delivering a durable and high-quality community space.',
     gallery: buildGallery(
       'community/leyton',
       Array.from({ length: 40 }, (_, i) =>
@@ -224,11 +238,13 @@ export const projects: ProjectDetailData[] = [
   {
     title: 'Luton',
     image: '/projects/community/luton/01.jpg',
-    location: 'Luton, Bedfordshire',
+    location: 'Saints Community Hub, Luton, Bedfordshire',
     year: '',
-    scope: 'Community',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Community — New Build',
+    description:
+      'Large-scale community development with demolition, groundworks and new structural steel building — drainage, reinforced foundations and façade systems.',
+    longDescription:
+      'A large-scale community development involving demolition, groundworks, and construction of a new structural steel building. The project included drainage systems, reinforced foundations, concrete slab construction, and façade systems, forming a strong base for a modern community hub.',
     gallery: buildGallery('community/luton', [
       '01.jpg',
       '02.jpg',
@@ -243,22 +259,26 @@ export const projects: ProjectDetailData[] = [
   {
     title: 'Luton Central',
     image: '/projects/community/luton-central/01.webp',
-    location: 'Luton, Bedfordshire',
+    location: 'Luton Central Mosque, Luton, Bedfordshire',
     year: '',
-    scope: 'Community',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Community — Compliance & Upgrade',
+    description:
+      'Compliance-driven project resolving 30+ building control issues — fire systems, drainage, structural and electrical upgrades enabling full certification.',
+    longDescription:
+      'A complex compliance-driven project addressing long-standing building control issues. Works included upgrades to fire systems, drainage, structural elements, and electrical installations. Over 30 compliance issues were resolved, resulting in full certification and enabling the building to operate in line with modern regulations.',
     gallery: buildGallery('community/luton-central', ['01.webp']),
     category: 'community',
   },
   {
     title: 'Southall Washrooms',
     image: '/projects/community/southall-washrooms/01.webp',
-    location: 'Southall, London',
+    location: 'Central Jamia Masjid Southall, London',
     year: '',
-    scope: 'Community',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Community — Washroom Refurbishment',
+    description:
+      'High-spec refurbishment of washroom and ablution facilities within a live religious environment — new drainage, plumbing, underfloor heating and durable fixtures.',
+    longDescription:
+      'A high-spec refurbishment of washroom and ablution facilities within a live religious environment. The project included new drainage, plumbing systems, underfloor heating, and mechanical upgrades. Finished with premium materials and durable fixtures, the development delivers a modern, hygienic, and efficient facility.',
     gallery: buildGallery('community/southall-washrooms', [
       '01.webp',
       '02.jpeg',
@@ -272,11 +292,13 @@ export const projects: ProjectDetailData[] = [
   {
     title: 'Qaboli',
     image: '/projects/commercial/qaboli/01.jpg',
-    location: 'United Kingdom',
+    location: '13 Station Road, United Kingdom',
     year: '',
-    scope: 'Commercial',
-    description: PLACEHOLDER_DESCRIPTION,
-    longDescription: PLACEHOLDER_LONG_DESCRIPTION,
+    scope: 'Commercial — Restaurant',
+    description:
+      'Complete restaurant redevelopment — demolition, rear extension and full commercial kitchen, with a bespoke high-end interior and custom lighting.',
+    longDescription:
+      'A complete redevelopment of a restaurant space, including demolition, rear extension, and full commercial kitchen installation. The project features a bespoke high-end interior with custom lighting, decorative finishes, and premium materials. Designed as a flagship dining space, it combines functionality with strong architectural identity.',
     gallery: buildGallery('commercial/qaboli', ['01.jpg', '02.jpg', '03.jpg']),
     category: 'commercial',
   },

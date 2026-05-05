@@ -30,23 +30,6 @@ type Props = {
 };
 
 const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
-const HOVER_DURATION = 700;
-const HOVER_TRANSITION = `transform ${HOVER_DURATION}ms ${EASE}, opacity ${HOVER_DURATION}ms ${EASE}, box-shadow ${HOVER_DURATION}ms ${EASE}, filter ${HOVER_DURATION}ms ${EASE}`;
-
-const useIsDesktop = () => {
-  const [isDesktop, setIsDesktop] = useState(() =>
-    typeof window !== 'undefined'
-      ? window.matchMedia('(min-width: 768px)').matches
-      : true
-  );
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
-  return isDesktop;
-};
 
 export default function CategoryOverlay({
   category,
@@ -57,14 +40,9 @@ export default function CategoryOverlay({
 }: Props) {
   const [entered, setEntered] = useState(false);
   const [closing, setClosing] = useState(false);
-  const [expanded, setExpanded] = useState(false);
-  const [hovered, setHovered] = useState<number | null>(null);
-  const isDesktop = useIsDesktop();
 
   const items = projects.filter((p) => p.category === category);
-  const triple = items.slice(0, 3);
   const hasItems = items.length > 0;
-  const hasMore = items.length > 3;
 
   useEffect(() => {
     const t = window.requestAnimationFrame(() => setEntered(true));
@@ -102,29 +80,6 @@ export default function CategoryOverlay({
     triggerClose();
   };
 
-  const innerStyle = (idx: number): React.CSSProperties => {
-    const base: React.CSSProperties = {
-      transition: HOVER_TRANSITION,
-      willChange: 'transform, opacity, filter',
-    };
-    if (hovered === null) return base;
-    if (hovered === idx) {
-      return {
-        ...base,
-        transform: 'scale(1.05)',
-        boxShadow:
-          '0 30px 80px rgba(0,0,0,0.18), 0 12px 30px rgba(0,0,0,0.10)',
-        zIndex: 5,
-      };
-    }
-    return {
-      ...base,
-      transform: 'scale(0.98)',
-      opacity: 0.5,
-      filter: 'blur(1.5px)',
-    };
-  };
-
   const visible = entered && !closing;
   const label = CATEGORY_LABEL[category];
 
@@ -154,74 +109,6 @@ export default function CategoryOverlay({
             </div>
           </button>
         ))}
-      </div>
-    );
-  };
-
-  const renderTriple = (items: ProjectDetailData[]) => {
-    if (!isDesktop) {
-      return (
-        <div className="px-[5vw] flex flex-col gap-5">
-          {items.map((p) => (
-            <button
-              key={p.title}
-              onClick={() => onSelectProject(p)}
-              className="relative w-full aspect-[4/5] sm:aspect-[3/2] rounded-md overflow-hidden shadow-card group text-left"
-            >
-              <img
-                src={p.image}
-                alt={p.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-active:scale-[1.03]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
-              <div className="absolute left-5 right-5 bottom-5 text-white">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-white/70 mb-1.5">
-                  {p.year ? `${p.location} · ${p.year}` : p.location}
-                </div>
-                <h3 className="font-serif text-xl sm:text-2xl leading-tight">
-                  {p.title}
-                </h3>
-              </div>
-            </button>
-          ))}
-        </div>
-      );
-    }
-
-    return (
-      <div className="relative w-full h-[80vh] overflow-hidden">
-        {items[0] && (
-          <Card
-            position="absolute left-[3vw] top-0 w-[62vw] h-[64vh]"
-            project={items[0]}
-            large
-            showCta
-            onClick={() => onSelectProject(items[0])}
-            onEnter={() => setHovered(0)}
-            onLeave={() => setHovered(hovered === 0 ? null : hovered)}
-            innerStyle={innerStyle(0)}
-          />
-        )}
-        {items[1] && (
-          <Card
-            position="absolute left-[67vw] top-0 w-[30vw] h-[40vh]"
-            project={items[1]}
-            onClick={() => onSelectProject(items[1])}
-            onEnter={() => setHovered(1)}
-            onLeave={() => setHovered(hovered === 1 ? null : hovered)}
-            innerStyle={innerStyle(1)}
-          />
-        )}
-        {items[2] && (
-          <Card
-            position="absolute left-[67vw] top-[42vh] w-[30vw] h-[22vh]"
-            project={items[2]}
-            onClick={() => onSelectProject(items[2])}
-            onEnter={() => setHovered(2)}
-            onLeave={() => setHovered(hovered === 2 ? null : hovered)}
-            innerStyle={innerStyle(2)}
-          />
-        )}
       </div>
     );
   };
@@ -312,36 +199,14 @@ export default function CategoryOverlay({
         </div>
 
         {hasItems ? (
-          renderTriple(triple)
+          <div className="px-[5vw] md:px-[3vw] pb-[10vh] md:pb-[12vh]">
+            {renderGrid(items)}
+          </div>
         ) : (
           <div className="px-[5vw] md:px-[3vw] py-[10vh] text-center text-white/45 text-[13px] uppercase tracking-[0.22em]">
             No projects yet.
           </div>
         )}
-
-        {expanded && hasMore && (
-          <div className="px-[5vw] md:px-[3vw] pt-[6vh] md:pt-[8vh]">
-            {renderGrid(items.slice(3))}
-          </div>
-        )}
-
-        {hasMore && (
-          <div className="px-[5vw] md:px-[3vw] pt-[6vh] md:pt-[8vh] pb-[10vh] md:pb-[12vh] flex justify-center">
-            <button
-              onClick={() => setExpanded((v) => !v)}
-              className="group inline-flex items-center gap-3 px-6 md:px-7 py-3 md:py-3.5 border border-white/40 rounded-full text-white text-xs md:text-sm uppercase tracking-[0.18em] font-semibold hover:bg-white hover:text-doma-text transition-colors duration-500"
-            >
-              <span
-                className={`inline-flex items-center justify-center w-5 h-5 rounded-full border border-current text-[14px] leading-none transition-transform duration-300 ${expanded ? '-rotate-45' : 'group-hover:rotate-90'}`}
-              >
-                {expanded ? '−' : '+'}
-              </span>
-              <span>{expanded ? 'Less Projects' : 'More Projects'}</span>
-            </button>
-          </div>
-        )}
-
-        {!hasMore && hasItems && <div className="pb-[10vh] md:pb-[12vh]" />}
 
         <Footer variant="dark" />
       </div>
@@ -350,70 +215,3 @@ export default function CategoryOverlay({
   );
 }
 
-type CardProps = {
-  position: string;
-  project: ProjectDetailData;
-  onClick: () => void;
-  onEnter: () => void;
-  onLeave: () => void;
-  innerStyle: React.CSSProperties;
-  large?: boolean;
-  showCta?: boolean;
-};
-
-function Card({
-  position,
-  project,
-  onClick,
-  onEnter,
-  onLeave,
-  innerStyle,
-  large,
-  showCta,
-}: CardProps) {
-  return (
-    <div className={`${position} will-change-transform`}>
-      <div
-        onMouseEnter={onEnter}
-        onMouseLeave={onLeave}
-        onClick={onClick}
-        className="relative w-full h-full rounded-md overflow-hidden cursor-pointer shadow-card group"
-        style={innerStyle}
-      >
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform [transition-duration:800ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-        <div
-          className={`absolute ${large ? 'left-[2.2vw] bottom-[2.6vh]' : 'left-[1.6vw] bottom-[2.2vh]'} text-white`}
-        >
-          <div
-            className={`uppercase tracking-[0.22em] text-white/70 mb-1.5 ${large ? 'text-[11px]' : 'text-[10px]'}`}
-          >
-            {project.year
-              ? `${project.location} · ${project.year}`
-              : project.location}
-          </div>
-          <h3
-            className={`font-serif transition-transform [transition-duration:700ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 ${large ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'}`}
-          >
-            {project.title}
-          </h3>
-        </div>
-        {showCta && (
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onClick();
-            }}
-            className="absolute right-[2.2vw] bottom-[2.6vh] px-5 py-2 border border-white/40 text-white text-xs uppercase tracking-wider rounded-full opacity-90 transition-[opacity,background-color,color,border-color,transform] [transition-duration:700ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-100 group-hover:-translate-y-1 hover:bg-white hover:text-doma-text"
-          >
-            View Project
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}

@@ -40,8 +40,8 @@ function App() {
       <div className="relative">
         <HeroSection />
         <ProjectsSection />
-        <AboutSection />
         <ServicesSection />
+        <AboutSection />
         <JournalSection />
         <ContactSection />
       </div>
