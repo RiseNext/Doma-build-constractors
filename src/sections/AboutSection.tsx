@@ -21,7 +21,6 @@ type AboutArea = {
   body: string;
   image: string;
   highlights: { label: string; value: string }[];
-  bullets?: string[];
   team?: TeamMember[];
 };
 
@@ -125,16 +124,6 @@ const areas: AboutArea[] = [
       { label: 'Engagements', value: '4 models' },
       { label: 'On-budget', value: '96%' },
       { label: 'On-time', value: '94%' },
-    ],
-    bullets: [
-      'Design & Build',
-      'General Contracting',
-      'Construction Management',
-      'Loft Conversions',
-      'Basement Excavation',
-      'Extensions',
-      'Refurbishment',
-      'Heritage & Listed',
     ],
   },
 ];
@@ -383,20 +372,6 @@ function PillarRow({ area, reverse, onSelectMember }: PillarProps) {
             </div>
           ))}
         </div>
-
-        {area.bullets && (
-          <ul className="mt-7 md:mt-9 grid grid-cols-1 sm:grid-cols-2 gap-x-8 md:gap-x-10 gap-y-1 md:gap-y-2 border-t border-doma-text/10 pt-5 md:pt-6">
-            {area.bullets.map((b) => (
-              <li
-                key={b}
-                className="flex items-baseline gap-3 py-2 md:py-2.5 border-b border-doma-text/8 text-doma-text"
-              >
-                <span className="inline-block w-5 md:w-6 h-px bg-doma-gold flex-shrink-0 translate-y-[-3px]" />
-                <span className="text-[13px] md:text-[15px]">{b}</span>
-              </li>
-            ))}
-          </ul>
-        )}
 
       </div>
     </div>
