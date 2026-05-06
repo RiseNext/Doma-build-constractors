@@ -1,14 +1,32 @@
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const HERO_SLIDES = [
+  '/projects/commercial/qaboli/02.jpg',
+  '/projects/residential/57-castle-street-reading/01.webp',
+  '/projects/residential/balham/02.png',
+  '/projects/residential/finchley-house/04.webp',
+  '/projects/residential/hitchen/07.jpeg',
+];
+
+const SLIDE_MS = 4500;
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const wordmarkRef = useRef<HTMLHeadingElement>(null);
   const glassRef = useRef<HTMLDivElement>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setActiveSlide((i) => (i + 1) % HERO_SLIDES.length);
+    }, SLIDE_MS);
+    return () => window.clearInterval(id);
+  }, []);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -130,17 +148,25 @@ export default function HeroSection() {
       ref={sectionRef}
       className="pinned-section z-10"
     >
-      {/* Background Image */}
+      {/* Background Slideshow */}
       <div
         ref={bgRef}
         className="absolute inset-0 w-[110%] h-[105%] -left-[5%] -top-[2.5%] will-change-transform"
       >
-        <img
-          src="/hero_architecture.jpg"
-          alt="Architecture"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
+        {HERO_SLIDES.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt=""
+            aria-hidden={i !== activeSlide}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1600ms] ease-out ${
+              i === activeSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-black/35 pointer-events-none" />
       </div>
 
       {/* Glass Morph — grows + blurs on scroll */}

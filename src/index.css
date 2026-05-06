@@ -93,8 +93,8 @@
 
   .glass-morph {
     --glass-blur: 8px;
-    width: clamp(280px, 84vw, 1400px);
-    height: clamp(220px, 58vh, 760px);
+    width: clamp(240px, 62vw, 980px);
+    height: clamp(170px, 40vh, 520px);
     border-radius: 28px;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(var(--glass-blur)) saturate(140%);

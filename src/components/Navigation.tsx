@@ -74,13 +74,8 @@ export default function Navigation() {
               e.preventDefault();
               window.location.href = '/';
             }}
-            className={`inline-flex items-center transition-all duration-500 ${
-              isScrolled
-                ? 'opacity-100 translate-y-0 pointer-events-auto'
-                : 'opacity-0 -translate-y-2 pointer-events-none'
-            }`}
+            className="inline-flex items-center"
             aria-label="Doma Build Contractors Ltd — home"
-            aria-hidden={!isScrolled}
           >
             <img
               src="/logo/width_480.png"
