@@ -239,7 +239,7 @@ export const projects: ProjectDetailData[] = [
     category: 'community',
   },
   {
-    title: 'Leyton',
+    title: 'NOOR UL ISLAM',
     image: '/projects/community/leyton/01.jpg',
     location: 'Nurul Islam Trust, Leyton, London',
     year: '2026',
