@@ -17,7 +17,7 @@ export const CATEGORY_ENTRIES: CategoryEntry[] = [
   {
     id: 'community',
     title: 'Community',
-    image: '/projects/community/idc/01.jpg',
+    image: '/projects/community/WhatsApp Image 2026-05-06 at 8.02.36 PM.jpeg',
     blurb: 'Civic, public, neighbourhood.',
   },
   {
@@ -29,7 +29,7 @@ export const CATEGORY_ENTRIES: CategoryEntry[] = [
   {
     id: 'commercial',
     title: 'Commercial',
-    image: '/projects/community/WhatsApp Image 2026-05-06 at 8.02.36 PM.jpeg',
+    image: '/projects/commercial/qaboli/03.jpg',
     blurb: 'Workspaces, retail, hospitality.',
   },
 ];
