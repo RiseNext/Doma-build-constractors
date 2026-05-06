@@ -190,7 +190,7 @@ export default function ProjectsSection() {
               <img
                 src={c.image}
                 alt={c.title}
-                className={`w-full h-full ${c.id === 'community' ? 'object-contain' : 'object-cover'} transition-transform duration-700 group-active:scale-[1.03]`}
+                className="w-full h-full object-cover transition-transform duration-700 group-active:scale-[1.03]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
               <div
@@ -357,7 +357,7 @@ function CategoryCard({
         <img
           src={entry.image}
           alt={entry.title}
-          className={`w-full h-full ${entry.id === 'community' ? 'object-contain' : 'object-cover'} transition-transform [transition-duration:800ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]`}
+          className="w-full h-full object-cover transition-transform [transition-duration:800ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 pointer-events-none" />
         <div
