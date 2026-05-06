@@ -29,7 +29,7 @@ export const CATEGORY_ENTRIES: CategoryEntry[] = [
   {
     id: 'commercial',
     title: 'Commercial',
-    image: '/projects/commercial/qaboli/01.jpg',
+    image: '/projects/community/WhatsApp Image 2026-05-06 at 8.02.36 PM.jpeg',
     blurb: 'Workspaces, retail, hospitality.',
   },
 ];
