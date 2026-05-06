@@ -6,7 +6,7 @@ import HeroSection from './sections/HeroSection';
 import ProjectsSection from './sections/ProjectsSection';
 import AboutSection from './sections/AboutSection';
 import ServicesSection from './sections/ServicesSection';
-import JournalSection from './sections/JournalSection';
+import TestimonialsSection from './sections/TestimonialsSection';
 import ContactSection from './sections/ContactSection';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,7 +42,7 @@ function App() {
         <ProjectsSection />
         <ServicesSection />
         <AboutSection />
-        <JournalSection />
+        <TestimonialsSection />
         <ContactSection />
       </div>
     </main>

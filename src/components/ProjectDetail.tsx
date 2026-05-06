@@ -310,7 +310,7 @@ export default function ProjectDetail({
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent pointer-events-none" />
                 <div className="absolute left-2 bottom-1.5 text-white/85 text-[10px] uppercase tracking-[0.2em] tabular-nums">
-                  {String(i + 1).padStart(2, '0')}
+                  {src.split('/').pop()?.match(/(\d+)/)?.[1]?.padStart(2, '0') ?? String(i + 1).padStart(2, '0')}
                 </div>
               </button>
             ))}

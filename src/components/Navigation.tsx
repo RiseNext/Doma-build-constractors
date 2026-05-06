@@ -143,6 +143,7 @@ export default function Navigation() {
                 {[
                   { label: 'Home', href: '#home' },
                   { label: 'Projects', href: '#projects' },
+                  { label: 'Testimonials', href: '#testimonials' },
                   { label: 'Contact', href: '#contact' },
                 ].map((item) => (
                   <li key={item.label} className="border-b border-white/10 pb-2">
@@ -170,6 +171,7 @@ export default function Navigation() {
                 {[
                   { label: 'Home', href: '#home' },
                   { label: 'Projects', href: '#projects' },
+                  { label: 'Testimonials', href: '#testimonials' },
                   { label: 'Contact', href: '#contact' },
                 ].map((item) => (
                   <li key={item.label}>

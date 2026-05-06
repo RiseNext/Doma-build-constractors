@@ -185,12 +185,12 @@ export default function ProjectsSection() {
             <button
               key={c.id}
               onClick={() => setOpenCategory(c.id)}
-              className="mobile-category-card relative w-full aspect-[4/5] sm:aspect-[3/2] rounded-md overflow-hidden shadow-card group text-left will-change-transform"
+              className="mobile-category-card relative w-full aspect-[4/5] sm:aspect-[3/2] rounded-md overflow-hidden shadow-card group text-left will-change-transform bg-doma-dark"
             >
               <img
                 src={c.image}
                 alt={c.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-active:scale-[1.03]"
+                className={`w-full h-full ${c.id === 'community' ? 'object-contain' : 'object-cover'} transition-transform duration-700 group-active:scale-[1.03]`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
               <div
@@ -351,13 +351,13 @@ function CategoryCard({
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
         onClick={onClick}
-        className="relative w-full h-full rounded-md overflow-hidden cursor-pointer shadow-card group"
+        className="relative w-full h-full rounded-md overflow-hidden cursor-pointer shadow-card group bg-doma-dark"
         style={innerStyle}
       >
         <img
           src={entry.image}
           alt={entry.title}
-          className="w-full h-full object-cover transition-transform [transition-duration:800ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]"
+          className={`w-full h-full ${entry.id === 'community' ? 'object-contain' : 'object-cover'} transition-transform [transition-duration:800ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 pointer-events-none" />
         <div
