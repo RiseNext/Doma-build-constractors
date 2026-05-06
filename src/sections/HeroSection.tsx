@@ -42,11 +42,18 @@ export default function HeroSection() {
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onLeaveBack: () => {
-            gsap.set([bgRef.current, wordmarkRef.current], {
+            gsap.set(bgRef.current, {
               opacity: 1,
               x: 0,
               y: 0,
               scale: 1,
+            });
+            gsap.set(wordmarkRef.current, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              xPercent: -50,
+              yPercent: -50,
             });
             gsap.set(glassRef.current, {
               xPercent: -50,
@@ -57,6 +64,15 @@ export default function HeroSection() {
             });
           },
         },
+      });
+
+      // Center wordmark via GSAP transforms so scroll-driven y animation
+      // doesn't clobber the centering on iOS Safari (where Tailwind's
+      // -translate-x-1/2 -translate-y-1/2 gets overwritten by the inline
+      // transform GSAP writes for the y tween).
+      gsap.set(wordmarkRef.current, {
+        xPercent: -50,
+        yPercent: -50,
       });
 
       // Glass panel is fixed in size — centered around the wordmark
@@ -136,7 +152,7 @@ export default function HeroSection() {
       {/* Wordmark */}
       <h1
         ref={wordmarkRef}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-center will-change-transform z-10 w-full px-6"
+        className="absolute left-1/2 top-1/2 text-white text-center will-change-transform z-10 w-full px-6"
       >
         <span className="wordmark block">
           <span className="block whitespace-nowrap">
