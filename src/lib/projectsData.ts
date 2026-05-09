@@ -10,9 +10,6 @@ export type CategoryEntry = {
   blurb: string;
 };
 
-const buildGallery = (slug: string, files: string[]) =>
-  files.map((f) => `/projects/${slug}/${f}`);
-
 export const CATEGORY_ENTRIES: CategoryEntry[] = [
   {
     id: 'community',
