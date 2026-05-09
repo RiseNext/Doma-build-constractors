@@ -56,7 +56,7 @@ export const projects: ProjectDetailData[] = [
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/10.jpeg',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/11.jpeg',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/12.jpeg',
-    ]),
+    ],
     category: 'residential',
   },
   {
@@ -72,7 +72,7 @@ export const projects: ProjectDetailData[] = [
     gallery: [
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/57-castle-street-reading/01.webp',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/57-castle-street-reading/02.png',
-    ]),
+    ],
     category: 'residential',
   },
   {
@@ -85,7 +85,7 @@ export const projects: ProjectDetailData[] = [
       'Mixed-use redevelopment with residential units and a high-end commercial space — full demolition, basement excavation, mansard and rear extension.',
     longDescription:
       'A comprehensive mixed-use redevelopment combining residential and commercial elements. The project included full demolition, basement excavation, mansard extension, and rear expansion. It delivered multiple residential units alongside a high-end commercial space, featuring bespoke interior design. Structural steelworks, full MEP installations, fire safety systems, and acoustic treatments were integrated to create a modern, high-quality development.',
-    gallery: ['https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/balham/01.png', 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/balham/02.png']),
+    gallery: ['https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/balham/01.png', 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/balham/02.png'],
     category: 'residential',
   },
   {
@@ -103,7 +103,7 @@ export const projects: ProjectDetailData[] = [
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/finchley-house/02.webp',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/finchley-house/03.webp',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/finchley-house/04.webp',
-    ]),
+    ],
     category: 'residential',
   },
   {
@@ -116,7 +116,7 @@ export const projects: ProjectDetailData[] = [
       'A new-build residential development delivering 10 contemporary apartments across approximately 1,100m² with retained façade and full turnkey fit-out.',
     longDescription:
       'A new-build residential development delivering 10 contemporary apartments across approximately 1,100m². The scheme retained the existing façade while constructing a new structural frame, foundations, and extensions to maximise space. Works included zinc cladding, modern roofing systems, high-performance glazing, and full internal fit-out. The project also incorporated drainage systems, utilities, and landscaping, resulting in a complete turnkey residential development.',
-    gallery: ['https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/finsbury-park/01.jpg', 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/finsbury-park/02.jpg']),
+    gallery: ['https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/finsbury-park/01.jpg', 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/finsbury-park/02.jpg'],
     category: 'residential',
   },
   {
@@ -137,7 +137,7 @@ export const projects: ProjectDetailData[] = [
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/hitchen/05.jpg',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/hitchen/06.jpg',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/hitchen/07.jpg',
-    ]),
+    ],
     category: 'residential',
   },
   {
@@ -170,7 +170,7 @@ export const projects: ProjectDetailData[] = [
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/richmond-house/17.jpeg',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/richmond-house/18.jpeg',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/richmond-house/19.jpeg',
-    ]),
+    ],
     category: 'residential',
   },
   {
@@ -195,7 +195,7 @@ export const projects: ProjectDetailData[] = [
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/wembley/09.png',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/wembley/10.png',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/wembley/11.png',
-    ]),
+    ],
     category: 'residential',
   },
 
@@ -237,7 +237,7 @@ export const projects: ProjectDetailData[] = [
 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/idc/24.jpg',
 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/idc/25.jpg',
 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/idc/26.jpg',
-    ]),
+    ],
     category: 'community',
   },
   {
@@ -273,7 +273,7 @@ export const projects: ProjectDetailData[] = [
 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/leyton/38.jpg',
 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/leyton/39.jpg',
 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/leyton/40.jpg',
-    ]),
+    ],
     category: 'community',
   },
   {
@@ -294,7 +294,7 @@ export const projects: ProjectDetailData[] = [
 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/luton/05.jpg',
 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/luton/06.jpg',
 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/luton/07.jpg',
-    ]),
+    ],
     category: 'community',
   },
   {
@@ -307,7 +307,7 @@ export const projects: ProjectDetailData[] = [
       'Compliance-driven project resolving 30+ building control issues — fire systems, drainage, structural and electrical upgrades enabling full certification.',
     longDescription:
       'A complex compliance-driven project addressing long-standing building control issues. Works included upgrades to fire systems, drainage, structural elements, and electrical installations. Over 30 compliance issues were resolved, resulting in full certification and enabling the building to operate in line with modern regulations.',
-    gallery: ['https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/luton-central/01.webp']),
+    gallery: ['https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/luton-central/01.webp'],
     category: 'community',
   },
   {
@@ -325,7 +325,7 @@ export const projects: ProjectDetailData[] = [
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/southall-washrooms/02.jpeg',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/southall-washrooms/03.jpeg',
       'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/southall-washrooms/04.jpeg',
-    ]),
+    ],
     category: 'community',
   },
 
@@ -340,7 +340,7 @@ export const projects: ProjectDetailData[] = [
       'Complete restaurant redevelopment — demolition, rear extension and full commercial kitchen, with a bespoke high-end interior and custom lighting.',
     longDescription:
       'A complete redevelopment of a restaurant space, including demolition, rear extension, and full commercial kitchen installation. The project features a bespoke high-end interior with custom lighting, decorative finishes, and premium materials. Designed as a flagship dining space, it combines functionality with strong architectural identity.',
-    gallery: ['https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/commercial/qaboli/01.jpg', 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/commercial/qaboli/02.jpg', 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/commercial/qaboli/03.jpg']),
+    gallery: ['https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/commercial/qaboli/01.jpg', 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/commercial/qaboli/02.jpg', 'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/commercial/qaboli/03.jpg'],
     category: 'commercial',
   },
 ];
