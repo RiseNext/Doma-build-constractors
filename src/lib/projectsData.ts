@@ -17,7 +17,7 @@ export const CATEGORY_ENTRIES: CategoryEntry[] = [
   {
     id: 'community',
     title: 'Community',
-    image: '/projects/community/WhatsApp Image 2026-05-06 at 8.02.36 PM.jpeg',
+    image: '/https:/cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/WhatsApp%20Image%202026-05-06%20at%208.02.36%20PM.jpeg',
     blurb: 'Civic, public, neighbourhood.',
   },
   {
