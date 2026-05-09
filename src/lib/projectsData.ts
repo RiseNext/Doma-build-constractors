@@ -23,13 +23,13 @@ export const CATEGORY_ENTRIES: CategoryEntry[] = [
   {
     id: 'residential',
     title: 'Residential',
-    image: '/projects/residential/richmond-house/01.jpeg',
+    image: '/https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/richmond-house/01.jpeg',
     blurb: 'Houses, apartments, HMO.',
   },
   {
     id: 'commercial',
     title: 'Commercial',
-    image: '/projects/commercial/qaboli/03.jpg',
+    image: '/https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/richmond-house/03.jpeg',
     blurb: 'Workspaces, retail, hospitality.',
   },
 ];
@@ -38,7 +38,7 @@ export const projects: ProjectDetailData[] = [
   // ─── RESIDENTIAL ──────────────────────────────────────────────────────
   {
     title: 'Archway Road',
-    image: '/projects/residential/archway-road/01.jpeg',
+    image: '/https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/01.jpeg',
     location: '492–494 Archway Road, London',
     year: '',
     scope: 'Residential — Refurbishment & Conversion',
@@ -47,24 +47,24 @@ export const projects: ProjectDetailData[] = [
     longDescription:
       'A comprehensive refurbishment and conversion project delivered across two adjoining properties for a repeat developer client.\n\nAt No. 492, the works focused on the full internal refurbishment of four existing residential apartments, including upgraded mechanical and electrical systems, replacement of utility services, and improved fire compartmentation and acoustic performance between units.\n\nAt No. 494, the scheme involved a more extensive redevelopment, converting a single dwelling into multiple residential units. This included a full basement excavation supported by underpinning works and the construction of a substantial retaining wall adjacent to the A1 highway. A large rear extension was also delivered to increase the building footprint and maximise residential capacity.\n\nStructural interventions included the installation of steel support systems to accommodate the new layout and extensions, alongside full drainage and service upgrades. The project also incorporated fire safety systems, acoustic insulation, and complete internal reconfiguration, finished with new kitchens, bathrooms, and high-quality interior detailing throughout.\n\nThe development successfully combined complex structural works with high-spec refurbishment, delivering multiple modern residential units within a constrained urban environment.',
     gallery: buildGallery('residential/archway-road', [
-      '01.jpeg',
-      '02.jpeg',
-      '03.jpeg',
-      '04.jpeg',
-      '05.jpeg',
-      '06.jpeg',
-      '07.jpeg',
-      '08.jpeg',
-      '09.jpeg',
-      '10.jpeg',
-      '11.jpeg',
-      '12.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/01.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/02.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/03.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/04.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/05.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/06.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/07.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/08.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/09.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/10.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/11.jpeg',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/archway-road/12.jpeg',
     ]),
     category: 'residential',
   },
   {
     title: '57 Castle Street, Reading',
-    image: '/projects/residential/57-castle-street-reading/01.webp',
+    image: '/https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/57-castle-street-reading/01.webp',
     location: 'Reading, Berkshire',
     year: '2017',
     scope: 'Residential',
@@ -73,7 +73,7 @@ export const projects: ProjectDetailData[] = [
     longDescription:
       'A full conversion of an existing office building into modern residential apartments, delivered within a tight five-month programme. The project involved complete strip-out to shell condition, installation of new electric-based utilities, drainage systems, and full internal reconfiguration. High-performance acoustic insulation, fire compartmentation, and compliant stair upgrades were implemented throughout. The development was completed with high-quality finishes including kitchens, bathrooms, flooring, and full MEP systems, transforming the building into a fully compliant residential scheme.',
     gallery: buildGallery('residential/57-castle-street-reading', [
-      '01.webp',
+      'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/residential/57-castle-street-reading/01.webp',
       '02.png',
     ]),
     category: 'residential',
