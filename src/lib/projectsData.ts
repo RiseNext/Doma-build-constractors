@@ -210,7 +210,7 @@ export const projects: ProjectDetailData[] = [
       'Full refurbishment and structural upgrade of a Grade II listed building, combining modern building performance with heritage preservation.',
     longDescription:
       'A full refurbishment and structural upgrade of a Grade II listed building. Works included basement construction, waterproofing systems, full MEP upgrades, and heritage restoration. The project successfully combined modern building performance with preservation requirements, delivering a high-quality community facility.',
-    gallery: [gallery: [
+    gallery: [
   'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/idc/01.jpg',
   'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/idc/02.jpg',
   'https://cplysydmfhmyfchfzzvr.supabase.co/storage/v1/object/public/website-images/community/idc/03.jpg',
